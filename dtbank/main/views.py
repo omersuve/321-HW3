@@ -18,6 +18,24 @@ def database_manager(response):
     return render(response, "main/manager_login.html", {})
 
 
+def user_options(request):
+    if('name' in request.session):
+        name = request.session['name']
+    else: 
+        return redirect('./login/')
+
+    return render(request, 'main/user_options', {"name":name})
+
+
+def manager_options(request):
+    if('name' in request.session):
+        name = request.session['name']
+    else: 
+        return redirect('./login/')
+
+    return render(request, 'main/manager_options', {"name":name})
+
+
 def login(response):
     if response.method == "POST":
 	    form = LoginForm(response.POST)
@@ -28,4 +46,4 @@ def login(response):
     else:
 	    form = LoginForm()
 
-    return render(response, "/home.html", {"form":form})
+    return render(response, "main/home.html", {"form":form})
