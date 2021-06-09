@@ -1,5 +1,4 @@
 {% extends "main/base.html" %}
-{% load crispy_forms_tags %}
 
 {% block title %} Manager Login {% endblock %}
 
@@ -7,8 +6,10 @@
 Login
 
 <form method="post" action="/">
-    {% csrf_token %}
-    {{form|crispy}}
+    <label for="username">username:</label>
+    <input type="search" id="search" name="search">
+    <label for="password">password:</label>
+    <input type="search" id="password" name="password">
     <button type="submit", name="save"> Login </button>
 </form>
 
