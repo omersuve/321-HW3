@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect 
-from .models import User
+
 #from .forms import CreateNewList
 
 # Create your views here.
