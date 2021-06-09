@@ -26,6 +26,6 @@ def login(response):
 
 	    return redirect("/")
     else:
-	    form = RegisterForm()
+	    form = LoginForm()
 
-    return render(response, "/login.html", {"form":form})
+    return render(response, "/home.html", {"form":form})

@@ -6,6 +6,7 @@
 Login
 
 <form method="post" action="/">
+    {% csrf_token %}
     <label for="username">username:</label>
     <input type="search" id="search" name="search">
     <label for="password">password:</label>
