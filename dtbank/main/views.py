@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect 
+from django.http import HttpResponse, HttpResponseRedirect
+from .forms import LoginForm
 
 #from .forms import CreateNewList
 
@@ -19,6 +20,12 @@ def database_manager(response):
 
 def login(response):
     if response.method == "POST":
-        pass    # Do stuff
+	    form = LoginForm(response.POST)
+	    if form.is_valid():
+	        form.save()
 
-    return render(response, "main/login.html", {})
+	    return redirect("/")
+    else:
+	    form = RegisterForm()
+
+    return render(response, "/login.html", {"form":form})
