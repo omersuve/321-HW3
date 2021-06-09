@@ -5,11 +5,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 # Create your views here.
 
-def index(response, id):
-    # ls = ToDoList.objects.get(id=id)
-    return render(response, "main/login.html", {})
-
-
 def home(response):
     return render(response, "main/home.html", {})
 

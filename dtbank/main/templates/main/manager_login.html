@@ -6,8 +6,8 @@
 Login
 
 <form method="post" action="/">
+    {{login_form|crispy}}
     {% csrf_token %}
-    {{form.as_p}}
     <button type="submit", name="save"> Login </button>
 </form>
 
