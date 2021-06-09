@@ -18,22 +18,22 @@ def database_manager(response):
     return render(response, "main/manager_login.html", {})
 
 
-def user_options(request):
-    if('name' in request.session):
-        name = request.session['name']
+def user_operations(request):
+    if('username' in request.session):
+        username = request.session['username']
     else: 
         return redirect('./login/')
 
-    return render(request, 'main/user_options', {"name":name})
+    return render(request, 'main/user_operations', {"username":username})
 
 
-def manager_options(request):
-    if('name' in request.session):
-        name = request.session['name']
+def manager_operations(request):
+    if('username' in request.session):
+        username = request.session['username']
     else: 
         return redirect('./login/')
 
-    return render(request, 'main/manager_options', {"name":name})
+    return render(request, 'main/manager_operations', {"username":username})
 
 
 def login(response):

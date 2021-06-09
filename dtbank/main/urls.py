@@ -7,6 +7,6 @@ urlpatterns = [
 
     path("database_manager/", views.database_manager, name="database_manager"),
     path("user/", views.user, name="user"),
-    path("manager_operations/", views.manager_options, name="manager_operations"),
-    path("user_operations/", views.user_options, name="user_operations"),
+    path("manager_operations/", views.manager_operations, name="manager_operations"),
+    path("user_operations/", views.user_operations, name="user_operations"),
 ]
