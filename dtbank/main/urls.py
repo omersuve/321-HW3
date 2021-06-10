@@ -3,10 +3,12 @@ from . import views
 
 urlpatterns = [
     path("", views.home, name="home"),
-    path("login/", views.login, name="login"),
 
-    path("database_manager/", views.database_manager, name="database_manager"),
+    path("db_manager/", views.db_manager, name="db_manager"),
     path("user/", views.user, name="user"),
-    path("manager_operations/", views.manager_operations, name="manager_operations"),
-    path("user_operations/", views.user_operations, name="user_operations"),
+    path("validate_manager/", views.validateManager, name="validate_manager"),
+    path("validate_user/", views.validateUser, name="validate_user"),
+    path("db_manager/manager_operations/", views.mngOperations, name="manager_operations"),
+    path("user/user_operations/", views.userOperations, name="user_operations"),
+    path('user/user_operations/<int:no>', views.userOperations, name='operation'),
 ]

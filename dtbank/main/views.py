@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import LoginForm
+from .users.userForm import UserLoginForm
+from .dbmanagers.managerForm import ManagerLoginForm
+from main.users.user_functions import *
 
 #from .forms import CreateNewList
 
@@ -11,39 +13,49 @@ def home(response):
 
 
 def user(response):
-    return render(response, "main/user_login.html", {})
+    context = {"login_fail": False, "login_form":UserLoginForm()}
+    return render(response, "main/user_login.html", context)
 
 
-def database_manager(response):
-    return render(response, "main/manager_login.html", {})
+def db_manager(response):
+    context = {"login_fail": False, "login_form":ManagerLoginForm()}
+    return render(response, "main/manager_login.html", context)
 
 
-def user_operations(request):
-    if('username' in request.session):
-        username = request.session['username']
-    else: 
-        return redirect('./login/')
+def validateUser(request):
+    username = request.POST.get("username")
+    
+    #loginCheck = checkCreditentials(name, surname)
 
-    return render(request, 'main/user_operations', {"username":username})
-
-
-def manager_operations(request):
-    if('username' in request.session):
-        username = request.session['username']
-    else: 
-        return redirect('./login/')
-
-    return render(request, 'main/manager_operations', {"username":username})
-
-
-def login(response):
-    if response.method == "POST":
-	    form = LoginForm(response.POST)
-	    if form.is_valid():
-	        form.save()
-
-	    return redirect("/")
+    if(username):
+        request.session['username'] = username
+        return render(request, 'main/login.html', {})
     else:
-	    form = LoginForm()
+        context = {"login_fail": True, "login_form":UserLoginForm()}    
+    return render(request, 'main/login.html', context)
 
-    return render(response, "main/home.html", {"form":form})
+def validateManager(request):
+    username = request.POST.get("username")
+    
+    #loginCheck = checkCreditentials(name, surname)
+
+    if(username):
+        request.session['username'] = username
+        return render(request, 'main/login.html', {})
+    else:
+        context = {"login_fail": True, "login_form":managerForm()}    
+    return render(request, 'main/login.html', context)
+
+
+def userOperations(request):
+    result_list = []
+    no = 1
+    if no == 1:
+        result_list = view_drugs_side_effects()
+    if no == 2:
+        pass
+
+    return render(request, 'main/user_operations.html', {"result_list": result_list})
+
+def mngOperations(request):
+    return render(request, 'main/manager_operations.html', {})
